@@ -1,0 +1,226 @@
+#container {
+    perspective: 1500px;
+    margin: 25rem;
+    display: flex;
+    position:fixed ;
+    top: 0;
+    width: 0;
+    overflow-x: hidden;
+    z-index: 1;
+}
+
+#dice {
+    height: 30vh;
+    width: 30px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    transform: rotateX(306deg) rotateY(30deg) rotateZ(359deg);
+    margin-left: 12rem
+}
+
+#dice2 {
+    height: 30vh;
+    width: 30px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    transform: rotateX(288deg) rotateY(102deg) rotateZ(23deg);
+    margin-left: 37rem;
+}
+
+.dice_face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    border: 0.1rem solid white;
+}
+
+.dot {
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.front .dot1 {
+    top: 85px;
+    left: 85px;
+}
+
+.back .dot1 {
+    top: 45px;
+    left: 45px;
+}
+
+.back .dot2 {
+    top: 125px;
+    left: 125px;
+}
+
+.right .dot1 {
+    top: 45px;
+    left: 45px;
+}
+
+.right .dot2 {
+    top: 85px;
+    left: 85px;
+}
+
+.right .dot3 {
+    top: 125px;
+    left: 125px;
+}
+
+.left .dot1 {
+    top: 45px;
+    left: 45px;
+}
+
+.left .dot2 {
+    top: 45px;
+    left: 125px;
+}
+
+.left .dot3 {
+    top: 125px;
+    left: 45px;
+}
+
+.left .dot4 {
+    top: 125px;
+    left: 125px;
+}
+
+.top .dot1 {
+    top: 45px;
+    left: 45px;
+}
+
+.top .dot2 {
+    top: 45px;
+    left: 125px;
+}
+
+.top .dot3 {
+    top: 85px;
+    left: 85px;
+}
+
+.top .dot4 {
+    top: 125px;
+    left: 45px;
+}
+
+.top .dot5 {
+    top: 125px;
+    left: 125px;
+}
+
+.bottom .dot1 {
+    top: 45px;
+    left: 45px;
+}
+
+.bottom .dot2 {
+    top: 45px;
+    left: 85px;
+}
+
+.bottom .dot3 {
+    top: 45px;
+    left: 125px;
+}
+
+.bottom .dot4 {
+    top: 125px;
+    left: 45px;
+}
+
+.bottom .dot5 {
+    top: 125px;
+    left: 85px;
+}
+
+.bottom .dot6 {
+    top: 125px;
+    left: 125px;
+}
+
+.front {
+    background-color: black;
+    transform: translateZ(100px);
+}
+
+.back {
+    background-color: black;
+     transform:  rotateX(-180deg) translateZ(100px);
+ }
+
+.left {
+    background-color: black;
+    transform: rotateY(-90deg) translateZ(100px);
+   }
+
+.right {
+    background-color: black;
+    transform: rotateY(90deg) translateZ(100px);
+}
+
+.top {
+     background-color: black;
+     transform: rotateX(90deg) translateZ(100px);
+ }
+
+.bottom {
+    background-color: black;
+    transform: rotateX(-90deg) translateZ(100px);
+}
+
+input {
+    width: 100px;
+    margin-left: 17.5rem;
+    margin-top: 20rem;
+    font-weight: bold;
+    border: 0.10rem solid black;
+    border-radius: 15%;
+
+}
+@keyframes animate {
+    
+    0% {
+        transform: rotateX(90deg) rotateY(120deg) rotateZ(260deg);
+
+    }
+    25% {
+        transform: rotateX(280deg) rotateY(120deg) rotateZ(360deg);
+      
+    }
+    50% {
+        transform: rotateX(360deg) rotateY(-240deg) rotateZ(240deg);
+      
+    }
+    75% {
+        transform: rotateX(150deg) rotateY(90deg) rotateZ(240deg);
+      
+    }
+    100% {
+        transform: rotateX(360deg) rotateY(240deg) rotateZ(360deg);
+   
+    }
+}
+#diceIcon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 2rem;
+    width: 10%;
+    cursor: pointer;
+}
+
+#diceIcon img {
+    height: 90%;
+    width: 90%;
+}

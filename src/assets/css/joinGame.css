@@ -1,0 +1,100 @@
+body {
+    font-size: 1.5rem;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 8rem;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+main input[type="button"] {
+    font-size: 1rem;
+}
+
+div div {
+    margin: 2rem;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+label {
+    padding-right: 1rem;
+    font-size: 2rem;
+    color: white;
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 3px black;
+}
+
+#filterContainer {
+    width: 40%;
+}
+
+input[type="text"] {
+    width: 30%;
+    cursor: text;
+    margin: 0;
+}
+
+#codeContainer {
+    display: flex;
+    align-items: center;
+}
+
+table {
+    border: 0.1rem solid black;
+    width: 100%;
+    margin-right: 1rem;
+}
+
+td {
+    vertical-align: middle;
+    border: 0.1rem solid black;
+}
+
+table tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+#wrapper {
+    overflow:hidden;
+    overflow-y: scroll;
+    height: 250px;
+    width: 60%;
+}
+
+#lobbies tr:hover {
+    background-color: #0ff;
+    cursor: pointer;
+}
+
+th {
+    font-weight: bold;
+    padding: 1rem;
+    color: white;
+    background-color: black;
+    height: 0;
+    position: sticky;
+}
+
+footer {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2.5rem;
+}
+
+input[type="button"] {
+    background-color: black;
+    color: whitesmoke;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.selected  {
+    background-color: #0ff !important;
+}
+

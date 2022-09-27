@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caropoly</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/screen.css">
+    <link rel="stylesheet" href="assets/css/convention.css">
+    <link rel="stylesheet" href="assets/css/ChoosePawn.css">
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/initialiser.js"></script>
+
+    <script src="assets/js/data-connector/error-handler.js"></script>
+    <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+    <script src="assets/js/ChoosePawn.js"></script>
+
+</head>
+<body>
+    <video autoplay muted loop id="bgVideo">
+        <source src="media/thedrive.mp4" type="video/mp4">
+        <track label="#" kind="captions" srclang="en" src="#" default>
+    </video>
+    <h1>Choose your pawn</h1>
+    <div class="pawns">
+        <a  href="#" class="pawnClick" id="GTR"><img src="images/GTR.png" alt="GTR R34"></a> 
+        <a  href="#" class="pawnClick" id="22B"><img src="images/22B.png" alt="Impreza 22B"></a> 
+        <a  href="#" class="pawnClick" id="Civic"><img src="images/Civic.png" alt="Civic ek9"></a> 
+        <a  href="#" class="pawnClick" id="M2"><img src="images/M2.png" alt="M2"></a>
+        <a  href="#" class="pawnClick" id="Quattro"><img src="images/Quattro.png" alt="Quattro Sport"></a> 
+        <a  href="#" class="pawnClick" id="Supra"><img src="images/Supra.png" alt="Supra mk5"></a> 
+      </div>
+
+    <input id="leave" type="button" value="Leave" onclick="history.back()">
+    <input id="join" type="button" value="Join" disabled onclick="window.location.href='waitingForPlayers.html';">
+
+
+
+<div class="errormessages">
+    <p></p>
+</div>
+</body>
+</html>

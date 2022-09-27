@@ -1,0 +1,15 @@
+body {
+    background-color: black;
+}
+
+h1 {
+    color: whitesmoke;
+    text-shadow: none;
+}
+
+button {
+    background-color: black;
+    color: whitesmoke;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+}

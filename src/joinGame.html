@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caropoly</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/screen.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/convention.css">
+    <link rel="stylesheet" href="assets/css/joinGame.css">
+
+    <script src="assets/js/config.js"></script>
+
+    <script src="assets/js/data-connector/error-handler.js"></script>
+    <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+    <script src="assets/js/displayExistingLobbies.js"></script>
+    <script src="assets/js/joinGame.js"></script>
+
+    <script src="assets/js/initialiser.js"></script>
+
+</head>
+<body>
+    <header>
+        <h1>Available lobbies</h1>
+    </header>
+    <video autoplay muted loop id="bgVideo">
+        <source src="media/thedrive.mp4" type="video/mp4">
+        <track label="#" kind="captions" srclang="en" src="#" default>
+    </video>
+    <main>
+        <div id="filterContainer">
+            <div class="codeContainter">
+                <label for="code">Filter by ID:</label>
+                <input type="text" id="code">
+                <input id="searchID" type="button" value="search">
+            </div>
+            <div id="playersContainer">
+                    <label for="amountOfPlayers">Amount of players</label>
+                    <select name="players" id="amountOfPlayers">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+            </div>
+        </div>
+        <div id="wrapper">
+        <table id="lobbies">
+            <tr>
+                <th>Game ID</th>
+                <th>Players</th>
+            </tr>
+        </table>
+    </div>
+    </main>
+    <footer>
+        <input type="button" onclick="history.back()" value="Back">
+        <input id="join" type="button" disabled value="Join">
+    </footer>
+</body>

@@ -1,0 +1,23 @@
+.minimapsmall {
+    position: relative;
+    cursor: pointer;
+}
+
+.minimap {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 15%;
+    height: auto;
+    border: 0.25rem solid black;
+}
+
+.minimapenlarge {
+    z-index: 2;
+    margin: auto;
+    display: flex;
+    max-width: 50%;
+    align-items: center;
+    justify-content: space-around;
+
+}

@@ -1,0 +1,205 @@
+body {
+    height: 100vh;
+    background: linear-gradient(0deg, rgba(195,51,34,1) 23%, rgba(253,187,45,1) 97%);
+}   
+
+.board {
+    position: absolute;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#containerBoard {
+    height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+.tile {
+    position: relative;
+}
+
+.tileImage {
+    position: relative;
+
+}
+
+.opponent{
+    position: absolute;
+    height: 7rem;
+    width: 7rem;
+    margin-top: 3rem;
+    opacity: 0.5;
+}
+
+#pawn{
+    position: absolute;
+    height: 7rem;
+    width: 7rem;
+    margin-top: 3rem;
+    opacity: 0.5;
+}
+
+#buyScreen {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#getOutOfJail {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#jailWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+#jailButtons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#buyButtons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+#wrapper img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#players {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: absolute;
+    left: 0;
+}
+
+.playercard {
+    display: flex;
+    flex-direction: column;
+    border: solid 1pt white;
+    background-color: black;
+    color: white;
+    margin: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
+    height: 100%;
+}
+
+#propertyCheck{
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-end;
+}
+
+button{
+    padding: 1rem;
+    color: whitesmoke;
+    background-color: black;
+    margin: 0.5rem;
+    font-size: 1.5rem;
+}
+
+#taxScreen {
+    position: relative;
+    top: 25%;
+    align-self: flex-end;
+    margin: auto;
+    width: 35%;
+    display: none;
+}
+
+
+button:hover {
+    cursor: pointer;
+}
+
+#communityScreen {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#chanceScreen {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#communityWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+#chanceWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}

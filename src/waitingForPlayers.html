@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Monopoly</title>
+      <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+      <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+      <meta name="msapplication-TileColor" content="#da532c">
+      <meta name="theme-color" content="#ffffff">
+      <!-- css files -->
+      <link rel="stylesheet" href="assets/css/reset.css">
+      <link rel="stylesheet" href="assets/css/convention.css">
+      <link rel="stylesheet" href="assets/css/waitingForPlayers.css">
+      <!-- javascript files -->
+      <script src="assets/js/config.js"></script>
+      <script src="assets/js/data-connector/error-handler.js"></script>
+      <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+      <script src="assets/js/initialiser.js"></script>
+      <script src="assets/js/loading.js"></script>
+   </head>
+   <body>
+      <video autoplay muted loop id="myVideo">
+         <source src="media/Background_Movie.mp4" type="Video/mp4">
+         <track label="#" kind="captions" srclang="en" src="#" default>
+     </video>
+      <h1 id="waitingText">Waiting</h1>
+      <div class="players">
+      </div>
+      <h2 id="counter">1, 2, 3, ...</h2>
+      <input type="button" onclick="history.back()" value="Leave game">
+      <input id="start" type="button" disabled onclick="window.location.href='game.html'" value="Start game">
+   </body>
+</html>

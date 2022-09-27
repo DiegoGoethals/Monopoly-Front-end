@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caropoly</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/screen.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/convention.css">
+    
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/initialiser.js"></script>
+
+    <script src="assets/js/data-connector/error-handler.js"></script>
+    <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+
+    <script src="assets/js/username.js"></script>
+    <script src="assets/js/index.js"></script>
+
+</head>
+<body>
+<h1>Caropoly</h1>
+<input type="text" id="username" placeholder="Username" /><br>
+<input type="button" class="button" id="play" onclick="window.location.href='joinOrCreate.html';" value="Play" disabled />
+<input type="button" id="rules" class="button" onclick="window.location.href='rules.html';" value="Rules" />
+
+<div class="errormessages">
+    <p></p>
+<video autoplay muted loop id="myVideo">
+    <source src="media/Background_Movie.mp4" type="Video/mp4">
+    <track label="#" kind="captions" srclang="en" src="#" default>
+</video>
+</div>
+</body>
+</html>

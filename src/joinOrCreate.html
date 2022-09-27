@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monopoly</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/screen.css">
+    <link rel="stylesheet" href="assets/css/joinOrCreate.css">
+    <link rel="stylesheet" href="assets/css/convention.css">
+    <script src="assets/js/config.js"></script>
+
+    <script src="assets/js/data-connector/error-handler.js"></script>
+    <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+
+    <script src="assets/js/initialiser.js"></script>
+</head>
+<body>
+    <header>
+        <h1>I want to</h1>
+    </header>
+    <video autoplay muted loop id="bgVideo">
+        <source src="media/thedrive.mp4" type="video/mp4">
+        <track label="#" kind="captions" srclang="en" src="#" default>
+    </video>
+    <main>
+        <input class="main-button" type="button" onclick="window.location.href='lobbyCreateGame.html';" value="Create game">
+        <input class="main-button" onclick="window.location.href='joinGame.html';" type="button" value="Join game">
+    </main>
+    <footer>
+        <input class="small-button" onclick="history.back()" type="button" value="Back">
+        <input class="small-button" type="button" onclick="window.location.href='rules.html';" value="Rules">
+    </footer>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="msapplication-TileColor" content="#da532c">
+      <meta name="theme-color" content="#ffffff">
+      <title>Caropoly</title>
+
+      <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+      <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+      <link rel="stylesheet" href="assets/css/sidebar.css">
+      <link rel="stylesheet" href="assets/css/reset.css">
+      <link rel="stylesheet" href="assets/css/screen.css">
+      <link rel="stylesheet" href="assets/css/game.css">
+      <link rel="stylesheet" href="assets/css/MinimapTest.css">
+      <link rel="stylesheet" href="assets/css/dice.css">
+
+      <script src="assets/js/sidebar.js"></script>
+      <script src="assets/js/config.js"></script>
+    <script src="assets/js/data-connector/error-handler.js"></script>
+    <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
+    <script src="assets/js/data-connector/local-storage-abstractor.js"></script>
+
+    <script src="assets/js/initialiser.js"></script>
+    <script src="assets/js/game.js"></script>
+    <script src="assets/js/Minimap.js"></script>
+    <script src="assets/js/dice.js"></script>
+
+
+   </head>
+   <body>
+     
+      <div class="sidebar">
+         <div class="close"><p>X</p></div>
+         <a href="rules.html">Rules</a>
+         <a id="leave">Leave Game</a>
+       </div>
+       <nav id="sidebarIcon">
+         <img id="sidebarIconImg" src="images/sidebar.png" alt="sidebarIcon">  
+       </nav>
+       
+<div id="containerBoard">
+   <div class="minimapsmall">
+      
+      <img src="media/Minimap_Caropoly.png" class="minimap"  alt="Minimap" id="imgClick"/>
+      
+    </div>
+   <div id="players">
+   </div>
+         <div class="board"></div>
+         <div id="taxScreen">
+            <button id="estimateTax">Pay estimate tax</button>
+            <button id="computeTax">Pay compute tax</button>
+         </div>
+      </div>
+       
+       <div id="jailText"></div>
+   
+    <div id="propertyCheck">
+      <button onclick="window.location.href='opponents.html';">View opponents' properties</button>
+      <button onclick="window.location.href='checkProperties.html';">View your properties</button>
+      
+      <button id="rent" disabled>Ask rent</button>
+   </div>
+
+
+    <div id="container" >
+      <div id="dice">
+         <div class="dice_face front">
+            <span class="dot dot1"></span>
+         </div>
+         <div class="dice_face back">
+            <span class="dot dot1"></span>
+            <span class="dot dot2"></span>
+         </div>
+         <div class="dice_face right">
+            <span class="dot dot1"></span>
+            <span class="dot dot2"></span>
+            <span class="dot dot3"></span>
+         </div>
+         <div class="dice_face left">
+            <span class="dot dot1"></span>
+            <span class="dot dot2"></span>
+            <span class="dot dot3"></span>
+            <span class="dot dot4"></span>
+         </div>
+         <div class="dice_face top">
+            <span class="dot dot1"></span>   
+            <span class="dot dot2"></span>   
+            <span class="dot dot3"></span>   
+            <span class="dot dot4"></span>   
+            <span class="dot dot5"></span>   
+         </div>
+         <div class="dice_face bottom">
+            <span class="dot dot1"></span>   
+            <span class="dot dot2"></span>   
+            <span class="dot dot3"></span>   
+            <span class="dot dot4"></span>   
+            <span class="dot dot5"></span>   
+            <span class="dot dot6"></span>   
+         </div>
+      </div>
+      <div id="dice2" >
+         <div class="dice_face front">
+            <span class="dot dot1"></span>
+         </div>
+         <div class="dice_face back">
+            <span class="dot dot1"></span>
+            <span class="dot dot2"></span>
+         </div>
+         <div class="dice_face right">
+            <span class="dot dot1"></span>
+            <span class="dot dot2"></span>
+            <span class="dot dot3"></span>
+         </div>
+         <div class="dice_face left">
+            <span class="dot dot1"></span>
+            <span class="dot dot2"></span>
+            <span class="dot dot3"></span>
+            <span class="dot dot4"></span>
+         </div>
+         <div class="dice_face top">
+            <span class="dot dot1"></span>   
+            <span class="dot dot2"></span>   
+            <span class="dot dot3"></span>   
+            <span class="dot dot4"></span>   
+            <span class="dot dot5"></span>   
+         </div>
+         <div class="dice_face bottom">
+            <span class="dot dot1"></span>   
+            <span class="dot dot2"></span>   
+            <span class="dot dot3"></span>   
+            <span class="dot dot4"></span>   
+            <span class="dot dot5"></span>   
+            <span class="dot dot6"></span>   
+         </div>
+      </div>
+</div>
+
+<div id="diceIcon">
+   <img  src="images/dobbels.png" alt="sidebarIcon">
+</div>
+
+<div id="getOutOfJail">
+   <div id="jailWrapper">
+      <p id="getOutOfJailCard"></p>
+      <div>Do you wanna get out of jail?</div>
+      <div id="jailButtons">
+         <p id="getOutByCard"></p>
+         <button id="getOut">Yes I would like to pay a fine</button>
+         <button id="stay">No I want to stay here and just roll to get out</button>
+      </div>
+   </div>
+   </div>
+
+<div id="buyScreen">
+<div id="wrapper">
+   <p id="propertyCard"></p>
+   <div>Do you wanna buy this Property?</div>
+   <div id="buyButtons">
+      <button id="buy">Yes, buy</button>
+      <button id="noBuy">No, I don't want it</button>
+   </div>
+</div>
+</div>
+
+<div id="communityScreen">
+   <div id="communityWrapper">
+      <p id="communityCard"></p>
+   </div>
+</div>
+
+<div id="chanceScreen">
+   <div id="chanceWrapper">
+      <p id="chanceCard"></p>
+   </div>
+</div>
+
+
+
+
+
+
+   <div class="errormessages"></div>
+    <p></p>
+
+</body>
+</html>

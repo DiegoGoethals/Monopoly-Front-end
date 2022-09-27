@@ -1,0 +1,55 @@
+body {
+    margin: auto;
+    background-color: whitesmoke;
+}
+
+
+.pawns {
+  width: 100%;
+  position: absolute;
+  top: 45%;
+  justify-content: space-evenly;
+  align-content: center;
+  display: flex;
+}
+
+.pawns a {
+    float: left;
+    width: 15%;
+    height: auto;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pawns a:hover {
+  background-color: #000;
+}
+
+.pawns img {
+    width: 50%;
+    height: auto;
+}
+
+input {
+  position: absolute;
+  width: 7.5rem;
+  bottom: 7.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+#leave {
+  left: 7.5%;
+}
+
+#join {
+  right: 7.5%;
+}
+
+.selected {
+  background-color: blue;
+}
+

@@ -1,0 +1,173 @@
+body {
+    text-align: center;
+    background: linear-gradient(0deg, rgba(149,34,195,1) 0%, rgba(253,109,45,1) 100%);
+    height: 1080px;
+}
+
+h1 {
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 5px solid black;
+    border-radius: 1rem;
+}
+
+.container {
+    background: linear-gradient(0deg, rgba(149,34,195,1) 0%, rgba(253,109,45,1) 100%);
+    height: 75%;
+}
+
+#properties {
+    display: flex;
+    cursor: pointer;
+    padding: 1rem;
+    flex-direction: row;
+}
+
+.propertyContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+#overlayOnButton{
+    position: fixed; 
+    display: none; 
+    width: 100%; 
+    height: 100%; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); 
+    cursor: pointer; 
+}
+
+#overlayOnButton button {
+    display: flex;
+    align-self: left;
+    background-color: transparent;
+    color: #61a5c2;
+    border:none;
+    box-shadow: none;
+    cursor: pointer;
+    font-family: sans-serif, Arial, Helvetica;
+    font-size: 3rem;
+}
+
+#upgradeableProperties {
+    position: absolute;
+    display: flex;
+    text-align: center;
+    padding: 3rem;
+}
+
+button {
+    border: solid 1px black;
+    font-size: 20px;
+    margin-top: 5px;
+    box-shadow: 1px 3px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+img {
+    height: 177px;
+    width: 140px;
+}
+
+.upgrade {
+	display: inline-block;
+	padding: 0.5rem 2rem;
+	border: 0.1em solid #FFFFFF;
+    margin-top: 0.5rem;
+	border-radius: 0.1em;
+	box-sizing:border-box;
+	text-decoration: none;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+    background-color: black;
+	color: green;
+	text-align: center;
+	transition: all 0.2s;
+    width: 140px;
+}
+
+.ugrade:hover  {
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+#mortgaged {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#closeMortgaged{
+    display: flex;
+    align-self: left;
+    background-color: transparent;
+    color: #61a5c2;
+    border:none;
+    box-shadow: none;
+    cursor: pointer;
+    font-family: sans-serif, Arial, Helvetica;
+    font-size: 3rem;
+}
+
+a.mortgage {
+	display: inline-block;
+	padding: 0.5rem 2rem;
+	border: 0.1em solid #FFFFFF;
+    margin-top: 0.5rem;
+	border-radius: 0.1em;
+	box-sizing:border-box;
+	text-decoration: none;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	color: whitesmoke;
+	text-align: center;
+	transition: all 0.2s;
+    width: 140px;
+}
+
+a.mortgage:hover {
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+a.payMortgage {
+	display: inline-block;
+	padding: 0.5rem 2rem;
+	border: 0.1em solid #FFFFFF;
+    margin-top: 0.5rem;
+	border-radius: 0.1em;
+	box-sizing:border-box;
+	text-decoration: none;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	color: whitesmoke;
+	text-align: center;
+	transition: all 0.2s;
+    width: 140px;
+}
+
+a.payMortgage:hover {
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+#mortgagedProperties {
+    display: flex;
+    cursor: pointer;
+    padding: 1rem;
+}

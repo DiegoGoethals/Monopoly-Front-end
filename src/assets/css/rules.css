@@ -1,0 +1,26 @@
+body {
+    text-align: left;
+    margin-left: 2rem;
+    background-color: white;
+}
+
+h1 {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    margin-top: 1rem;
+    font-size: 2.5rem;
+}
+
+.button {
+    background-color: black;
+    color: whitesmoke;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-size: 1.5rem;
+}

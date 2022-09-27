@@ -1,0 +1,21 @@
+main {
+    display: flex;
+    justify-content: space-around;
+}
+
+h2, label {
+    font-size: 2rem;
+    color: white;
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 3px black;
+}
+
+input[type="submit"], input[type="button"] {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    width: 40%;
+    margin: auto;
+    padding: 1rem;
+    margin-top: 6rem;
+}
+

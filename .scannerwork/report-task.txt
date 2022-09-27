@@ -1,0 +1,6 @@
+projectKey=2022.project-i:monopoly-client-24
+serverUrl=https://sonar.ti.howest.be
+serverVersion=8.9.1.44547
+dashboardUrl=https://sonar.ti.howest.be/dashboard?id=2022.project-i%3Amonopoly-client-24
+ceTaskId=AX_Qaaf_e_NJhsETln4b
+ceTaskUrl=https://sonar.ti.howest.be/api/ce/task?id=AX_Qaaf_e_NJhsETln4b
