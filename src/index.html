@@ -26,9 +26,10 @@
 </head>
 <body>
 <h1>Caropoly</h1>
-<input type="text" id="username" placeholder="Username" /><br>
-<input type="button" class="button" id="play" onclick="window.location.href='joinOrCreate.html';" value="Play" disabled />
-<input type="button" id="rules" class="button" onclick="window.location.href='rules.html';" value="Rules" />
+<label for="username"></label>
+<input type="text" id="username" placeholder="Username" autocomplete="off"/><br>
+<button class="button" id="play" onclick="window.location.href='joinOrCreate.html';" disabled>Play</button>
+<button id="rules" class="button" onclick="window.location.href='rules.html';">Rules</button>
 
 <div class="errormessages">
     <p></p>

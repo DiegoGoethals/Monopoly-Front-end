@@ -2,7 +2,6 @@
 
 body{
     text-align: center;
-
     font-family: Arial, Helvetica, sans-serif;
     background-color: black;
     
@@ -18,7 +17,7 @@ h2 {
     font-size: 3rem;
 }
 
-input:hover {
+button {
     cursor: pointer;
 }
 
@@ -35,4 +34,4 @@ input:hover {
     height: auto;
     z-index: -1;
     filter: opacity(90%);
-  }
+}
