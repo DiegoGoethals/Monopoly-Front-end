@@ -29,7 +29,6 @@ function animation(die, cor, roll) {
 
 function rotate(dice, cor) {
     const randomFace = dice;
-    console.log(randomFace);
     return "rotateX("+cor[randomFace - 1][0]+"deg) rotateY("+cor[randomFace - 1][1]+"deg) rotateZ("+cor[randomFace - 1][2]+"deg)";
 }
 
@@ -43,15 +42,14 @@ function getResult() {
     const gameID = localStorage.getItem("gameID");
     const username = localStorage.getItem("username");
     fetchFromServer(`/games/${gameID}/players/${username}/dice`, "POST").then(game => {
-        if(game.currentPlayer == username) {
+        if(game.currentPlayer === username) {
             throwDices(game.lastDiceRoll[0], game.lastDiceRoll[1]);
             seeDice();
             hideDiceAfterRoll();
         }
-        if(!game.currentPlayer == username){
+        if(game.currentPlayer !== username){
             disableClick();
         }
-        
     });
 }
 

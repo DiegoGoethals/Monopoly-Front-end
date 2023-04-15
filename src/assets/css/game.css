@@ -9,6 +9,12 @@ body {
     flex-direction: row-reverse;
 }
 
+#roll {
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+
 #containerBoard {
     height: 85%;
     display: flex;

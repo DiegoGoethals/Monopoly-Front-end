@@ -2,7 +2,6 @@
 
 const amountOfTiles = 6;
 let _currentTile = 0;
-let amountOfTurns = 0;
 let _interval = null;
 const _gameID = localStorage.getItem("gameID");
 const _username = localStorage.getItem("username");
@@ -16,11 +15,6 @@ function initGame() {
     document.getElementById("getOut").addEventListener("click", getOutOfJailByFine);
     document.getElementById("stay").addEventListener("click", deleteGetOutOfJailScreen);
     _interval = setInterval(() => getCurrentState(), 1500);
-    document.querySelector("#estimateTax").addEventListener("click", chooseEstimateTax);
-    document.querySelector("#computeTax").addEventListener("click", chooseComputeTax);
-    fetchFromServer(`/games/${_gameID}`, "GET").then(game => {
-        askRent(game.players);
-    });
 }
 
 function showTiles() {
@@ -28,7 +22,7 @@ function showTiles() {
     board.innerHTML = "";
     let beginTile = _currentTile;
     for (beginTile; beginTile < _currentTile + amountOfTiles; beginTile++) {
-        board.insertAdjacentHTML("beforeend", `<div id="${beginTile % 40}" class="tile"><img src="assets/Tiles/${beginTile % 40}.png" class"tileImage" alt="tile"></div>`);
+        board.insertAdjacentHTML("beforeend", `<div id="${beginTile % 40}" class="tile"><img src="assets/Tiles/${beginTile % 40}.png" alt="tile" class"tileImage"></div>`);
     }
     drawPawn();
     drawOpponentPawn();
@@ -56,29 +50,23 @@ function between(x, min, max) {
   }
 
 function leaveGame() {
-    fetchFromServer(`/games/${_gameID}/players/${_username}/bankruptcy`, "POST").then(() =>
-        window.location = "joinOrCreate.html");
+    fetchFromServer(`/games/${_gameID}/players/${_username}/bankruptcy`, "POST").then(() => {
+        window.location = "goneBankrupt.html";
+    });
 }
 
 function getCurrentState() {
     fetchFromServer(`/games/${_gameID}`,'GET').then(game => {
-        let player = null;
-        for (let play of game.players) {
-            if (play.name === _username) {
-                player = play;
-                break;
-            }
-        }
-        for (let tile of _tiles) {
-            if (tile.position === player.currentTile) {
-                _currentTile = tile.position;
-                break;
-            }
-        }
+        let player = game.players.filter(player => player.name === _username)[0];
+        _currentTile = player.currentTile;
         showTiles();
         showPlayers(game);
         if (game.turns.length > 0) {
             move(game, game.lastTurn, player);
+        }
+        document.getElementById("roll").innerHTML = game.lastDiceRoll;
+        if (game.ended) {
+            alert(`Congrats ${game.winner}, you won the game!`);
         }
     });
 }
@@ -89,7 +77,7 @@ function move(game, lastTurn, player) {
     if (lastTurn.player === _username) {
         _propertyName = move.tile;
         if (!game.canRoll && move.description === "can buy this property in direct sale") {
-            setTimeout(showBuyScreen, 2000);
+            showBuyScreen();
         }
         if(/Community Chest/.test(move.tile)) {
             showCommunityScreen(move);
@@ -100,10 +88,6 @@ function move(game, lastTurn, player) {
         if (player.jailed) {
             document.getElementById("jailText").innerHTML = "<p>You have to go to jail</p>";
             showGetOutOfJailScreen(player);
-        }
-        if (move.description === "has to pay taxes") {
-            showTaxScreen();
-            
         }
         if(/Chance/.test(move.tile)) {
             showChanceScreen(move);
@@ -182,16 +166,6 @@ function getOutOfJailByFine() {
     });
 }
 
-function collectRent(property, debtor) {
-    fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${property}/visitors/${debtor}/rent`, "DELETE");
-    document.querySelector("#rent").style.backgroundColor = "black";
-}
-
-function goBankrupt() {
-    fetchFromServer(`/games/${_gameID}/players/${_username}/bankruptcy`, "true").then(() =>
-        window.location = "goneBankrupt.html");
-}
-
 function showCommunityScreen(move){
     fetchFromServer("/community-chest", "GET").then(cards => {
         const communityCard = document.getElementById("communityCard");
@@ -208,28 +182,6 @@ function deleteCommunityScreen(){
     document.getElementById("communityScreen").style.display = "none";
 }
 
-function showTaxScreen() {
-    document.querySelector("#taxScreen").style.display = "block";
-    document.querySelector("body").style.backgroundColor = "gray";
-}
-
-function deleteTaxScreen() {
-    document.querySelector("#taxScreen").style.display = "none";
-    document.querySelector("body").style.backgroundColor = "white";
-}
-
-function chooseEstimateTax() {
-    fetchFromServer(`/games/${_gameID}/players/${_username}/tax/estimate`, "POST").then(() => {
-        deleteTaxScreen();
-    });
-}
-
-function chooseComputeTax() {
-    fetchFromServer(`/games/${_gameID}/players/${_username}/tax/compute`, "POST").then(() => {
-        deleteTaxScreen();
-    });
-}
-
 function showChanceScreen(move){
     fetchFromServer("/chance", "GET").then(cards => {
         const chanceCard = document.getElementById("chanceCard");
@@ -244,25 +196,4 @@ function deleteChanceScreen(){
     const chanceCard = document.getElementById("chanceCard");
     chanceCard.parentNode.removeChild(chanceCard);
     document.getElementById("chanceScreen").style.display = "none";
-}
-
-function getCurrentPlayer(players) {
-    for (let player of players) {
-        if (_username == player.name) {
-            return player;
-        }
-    }
-}
-
-function askRent(players) {
-    const rentButton = document.querySelector("#rent");
-      for (let player of players) {
-          getCurrentPlayer(players).properties.forEach(property => {
-            if ((property.position == player.currentTile) && (player.name != getCurrentPlayer(players).name)) {
-                rentButton.disabled = false;
-                rentButton.style.backgroundColor = "green";
-                rentButton.addEventListener("click", collectRent(property.name, player.name));
-            }
-          })
-      }
 }

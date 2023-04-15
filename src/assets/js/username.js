@@ -3,7 +3,7 @@
 
 function initUsername() {
     const $usernameInputField = document.querySelector("#username");
-    const $playButton = document.querySelector('input[value="Play"]');
+    const $playButton = document.querySelector('#play');
     $playButton.addEventListener("click", saveToLocalStorage);
     $usernameInputField.addEventListener("keypress", saveToLocalStorage);
 }
