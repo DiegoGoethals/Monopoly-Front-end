@@ -187,7 +187,7 @@ function showChanceScreen(move){
         const chanceCard = document.getElementById("chanceCard");
         chanceCard.parentNode.removeChild(chanceCard);
         document.getElementById("chanceScreen").style.display = "block";
-        document.getElementById("chanceWrapper").insertAdjacentHTML("afterbegin", `<img src="assets/Community/${cards.indexOf(move.description)}.png" alt="chanceCard" id="chanceCard">`);
+        document.getElementById("chanceWrapper").insertAdjacentHTML("afterbegin", `<img src="assets/Chance/${cards.indexOf(move.description)}.png" alt="chanceCard" id="chanceCard">`);
         document.getElementById("chanceWrapper").addEventListener("click", deleteChanceScreen);
     });
 }
