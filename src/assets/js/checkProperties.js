@@ -125,7 +125,9 @@ function upgradeProperty(e) {
                 getCurrentState();
             });
         } else {
-            fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/hotel`, "POST");
+            fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/hotel`, "POST").then(r => {
+                getCurrentState();
+            } );
         }
     });
 }
@@ -142,11 +144,14 @@ function showMortgaged() {
                 <div class="frontSide">
                     <img src="assets/PropertyCards/${mortgaged[i].position}.png" alt="Owned property">
                 </div>
-                <div class="backside"><a class="payMortgage" href="#">Pay off mortgage</a></div>
+                <div class="backside"><a class="payMortgage" href="#" id="${mortgaged[i].position}">Pay off mortgage</a></div>
             </div>
         </div>
     </div>`);
     }
+    document.querySelectorAll(".payMortgage").forEach(button => {
+        button.addEventListener("click", settleMortgage);
+    });
 }
 
 function showMortgagedScreen() {
@@ -160,6 +165,13 @@ function closeMortgaged() {
 function takeMortgage(e) {
     const propertyName = _tiles[e.target.id].name;
     fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/mortgage`, "POST").then(() => {
+        getCurrentState();
+    });
+}
+
+function settleMortgage(e) {
+    const propertyName = _tiles[e.target.id].name;
+    fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/mortgage`, "DELETE").then(() => {
         getCurrentState();
     });
 }
