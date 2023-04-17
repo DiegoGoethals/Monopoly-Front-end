@@ -16,7 +16,6 @@
 
       <script src="assets/js/config.js"></script>
       <script src="assets/js/initialiser.js"></script>
-      <script src="assets/js/overlayActivator.js"></script>
       <script src="assets/js/data-connector/error-handler.js"></script>
       <script src="assets/js/data-connector/api-communication-abstractor.js"></script>
       <script src="assets/js/checkProperties.js"></script>
@@ -29,17 +28,23 @@
          </div>
       </div>
 
-         <div id="mortgaged">
+         <div id="mortgaged" class="overlay">
             <button type="button" id="closeMortgaged">x</button>
             <div id="mortgagedProperties">
             </div>
          </div>
 
-      <button id="showUpgradeable" onclick="on()">Show Upgradeable houses</button>
+      <div id="upgraded" class="overlay">
+         <button type="button" id="closeUpgraded">x</button>
+         <div id="upgradedProperties">
+         </div>
+      </div>
+
+      <button id="showUpgradeable">Show Upgradeable houses</button>
       <button id="showMortgaged">Show mortgaged properties</button>
       <button onclick="window.location.href='game.html';">Go Back to the game screen</button>
-      <div id="overlayOnButton">
-         <button type="button" onclick="off()">x</button>
+      <div id="upgradeable" class="overlay">
+         <button type="button" id="closeUpgradeable">x</button>
          <div id="upgradeableProperties">
          </div>
       </div>
