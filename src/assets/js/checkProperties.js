@@ -1,17 +1,5 @@
 "use strict";
 
-let _game = null;
-let _upgradeableProperties = [];
-let _houseCounts = {
-    "PURPLE": 0,
-    "LIGHTBLUE": 0,
-    "VIOLET": 0,
-    "ORANGE": 0,
-    "RED": 0,
-    "YELLOW": 0,
-    "DARKGREEN": 0,
-    "DARKBLUE": 0
-};
 const _gameID = localStorage.getItem("gameID");
 const _username = localStorage.getItem("username");
 
@@ -23,10 +11,9 @@ function initCheckProperties() {
 
 function getCurrentState() {
     fetchFromServer(`/games/${_gameID}`, "GET").then(game => {
-        _game = game;
         showProperties(game.players);
         showUpgradeable(game.players);
-        showMortgaged();
+        showMortgaged(game.players);
     });
 }
 
@@ -63,88 +50,54 @@ function showProperty(container, property) {
 function showUpgradeable(players) {
     const container = document.getElementById("upgradeableProperties");
     container.innerHTML = "";
-    let properties = null;
-    for (let player of players) {
-        if (player.name === localStorage.getItem("username")) {
-            properties = player.properties;
-            break;
-        }
-    }
-    let ugradeableIndex = 0;
-    for (let property of properties) {
-        const color = _tiles[property.position].streetColor;
-        let amountOfGroup = 0;
-        let highestCount = [];
-        let numberInGroup = 0;
-        let sameProp = null;
-        let canUpgrade = false;
-        for (let prop of properties) {
-            if (_tiles[prop.position].color === color) {
-                amountOfGroup++;
-                highestCount.push(prop.houseCount);
-                if (property.name === prop.name) {
-                    sameProp = numberInGroup;
-                }
-                numberInGroup++;
-            }
-            if (amountOfGroup === _tiles[property.position].groupSize) {
-                if (Math.max(...highestCount) !== Math.min(...highestCount) && highestCount[sameProp] === Math.min(...highestCount)) {
-                    canUpgrade = true;
-                }
-                if (Math.max(...highestCount) === Math.min(...highestCount)) {
-                    canUpgrade = true;
-                }
-                _houseCounts[color] = Math.min(...highestCount);
-            }
-            if (canUpgrade) {
-                _upgradeableProperties.push(property.name);
-                container.insertAdjacentHTML("afterbegin", `<div id="${property.name}" class="flipCard">
+    const upgradeable = players.filter(player => player.name === _username)[0]
+        .properties.filter(property => property.upgradeable);
+    for (let property of upgradeable) {
+        container.insertAdjacentHTML("beforeend", `
+            <div class="flipCard">
                 <div class="innerCard">
-                   <div class="frontSide">
-                      <img src="assets/PropertyCards/${property.position}.png" alt="upgradeable property">
-                   </div>
-                   <div class="backside">
-                      <a id="${ugradeableIndex}" class="upgrade" href="#">Upgrade</a>
+                    <div class="frontSide">
+                        <img src="assets/PropertyCards/${property.position}.png" alt="upgradeable property">
                     </div>
+                    <div class="backside">
+                        <a id="${property.name}" data-houseCount="${property.houseCount}" class="upgrade" href="#">Upgrade</a>
                     </div>
-                </div>`);
-                ugradeableIndex++;
-                document.querySelector(".upgrade").addEventListener("click", upgradeProperty);
-                break;
-            }
-        }
+                </div>
+            </div>`);
     }
+    document.querySelectorAll(".upgrade").forEach(button => {
+        button.addEventListener("click", upgradeProperty);
+    });
 }
 
 function upgradeProperty(e) {
     const propertyName = e.target.id;
-    fetchFromServer(`/tiles/${propertyName}`, "GET").then(tile => {
-        const color = tile.streetColor;
-        if (_houseCounts[color] < 4) {
+    fetchFromServer(`/tiles/${propertyName}`, "GET").then(() => {
+        if (e.target.dataset.housecount < 4) {
             fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/houses`, "POST").then(() => {
                 getCurrentState();
             });
         } else {
-            fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/hotel`, "POST").then(r => {
+            fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/hotel`, "POST").then(() => {
                 getCurrentState();
-            } );
+            });
         }
     });
 }
 
-function showMortgaged() {
+function showMortgaged(players) {
     const container = document.getElementById("mortgagedProperties");
     container.innerHTML = "";
-    const mortgaged = _game.players.filter(player => player.name === _username)[0]
+    const mortgaged = players.filter(player => player.name === _username)[0]
         .properties.filter(property => property.mortgaged);
-    for (let i = 0; i < mortgaged.length; i++) {
-        container.insertAdjacentHTML("afterbegin", `
+    for (let property of mortgaged) {
+        container.insertAdjacentHTML("beforeend", `
         <div class="flipCard">
             <div class="innerCard">
                 <div class="frontSide">
-                    <img src="assets/PropertyCards/${mortgaged[i].position}.png" alt="Owned property">
+                    <img src="assets/PropertyCards/${property.position}.png" alt="Owned property">
                 </div>
-                <div class="backside"><a class="payMortgage" href="#" id="${mortgaged[i].position}">Pay off mortgage</a></div>
+                <div class="backside"><a class="payMortgage" href="#" id="${property.position}">Pay off mortgage</a></div>
             </div>
         </div>
     </div>`);
