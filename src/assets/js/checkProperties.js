@@ -1,6 +1,6 @@
 "use strict";
 
-let _mortgagedProperties = [];
+let _game = null;
 let _upgradeableProperties = [];
 let _houseCounts = {
     "PURPLE": 0,
@@ -23,6 +23,7 @@ function initCheckProperties() {
 
 function getCurrentState() {
     fetchFromServer(`/games/${_gameID}`, "GET").then(game => {
+        _game = game;
         showProperties(game.players);
         showUpgradeable(game.players);
         showMortgaged();
@@ -31,11 +32,11 @@ function getCurrentState() {
 
 function showProperties(players) {
     const $container = document.querySelector("#properties");
-    for (let player of players) {
-        if (_username == player.name) {
-            for (let property of player.properties) {
-                showProperty($container, property);
-            }
+    $container.innerHTML = "";
+    const player = players.filter(player => player.name === _username)[0];
+    if (_username === player.name) {
+        for (let property of player.properties) {
+            showProperty($container, property);
         }
     }
     document.querySelectorAll(".mortgage").forEach(button => {
@@ -44,17 +45,18 @@ function showProperties(players) {
 }
 
 function showProperty(container, property) {
-    container.insertAdjacentHTML("beforeend",
-    `<div class="flipCard">
-    <div class="innerCard">
-        <div class="frontSide">
-            <img src="assets/PropertyCards/${property.position}.png" alt="Owned property">
+    container.insertAdjacentHTML("beforeend", `
+    <div class="flipCard">
+        <div class="innerCard">
+            <div class="frontSide">
+                <img src="assets/PropertyCards/${property.position}.png" alt="Owned property">
+            </div>
+            <div class="backside">
+                <a class="mortgage" id="${property.position}" href="#">Take mortgage</a>
+                <a class="sell" href="#">Sell</a>
+            </div>
         </div>
-        <div class="backside">
-        <a class="mortgage" id="${property.position}" href="#">Take mortgage</a>
-            <a class="sell" href="#">Sell</a>
-        </div>
-        </div>`);
+    </div>`);
 }
 
 
@@ -86,7 +88,7 @@ function showUpgradeable(players) {
                 numberInGroup++;
             }
             if (amountOfGroup === _tiles[property.position].groupSize) {
-                if (Math.max(...highestCount) != Math.min(...highestCount) && highestCount[sameProp] === Math.min(...highestCount)) {
+                if (Math.max(...highestCount) !== Math.min(...highestCount) && highestCount[sameProp] === Math.min(...highestCount)) {
                     canUpgrade = true;
                 }
                 if (Math.max(...highestCount) === Math.min(...highestCount)) {
@@ -131,16 +133,19 @@ function upgradeProperty(e) {
 function showMortgaged() {
     const container = document.getElementById("mortgagedProperties");
     container.innerHTML = "";
-    for (let i = 0; i < _mortgagedProperties.length; i++) {
-        console.log(i);
-        container.insertAdjacentHTML("afterbegin", `<div class="flipCard">
+    const mortgaged = _game.players.filter(player => player.name === _username)[0]
+        .properties.filter(property => property.mortgaged);
+    for (let i = 0; i < mortgaged.length; i++) {
+        container.insertAdjacentHTML("afterbegin", `
+        <div class="flipCard">
             <div class="innerCard">
                 <div class="frontSide">
-                    <img src="assets/PropertyCards/${_mortgagedProperties[i]}.png" alt="Owned property">
+                    <img src="assets/PropertyCards/${mortgaged[i].position}.png" alt="Owned property">
                 </div>
                 <div class="backside"><a class="payMortgage" href="#">Pay off mortgage</a></div>
             </div>
-        </div>`);
+        </div>
+    </div>`);
     }
 }
 
@@ -154,9 +159,7 @@ function closeMortgaged() {
 
 function takeMortgage(e) {
     const propertyName = _tiles[e.target.id].name;
-    _mortgagedProperties.push(e.target.id);
     fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/mortgage`, "POST").then(() => {
-        console.log(_mortgagedProperties);
         getCurrentState();
     });
 }
