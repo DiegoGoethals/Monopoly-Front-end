@@ -7,6 +7,10 @@ function initCheckProperties() {
     getCurrentState();
     document.getElementById("showMortgaged").addEventListener("click", showMortgagedScreen);
     document.getElementById("closeMortgaged").addEventListener("click", closeMortgaged);
+    document.getElementById("showUpgradeable").addEventListener("click", showUpgradeableScreen);
+    document.getElementById("closeUpgradeable").addEventListener("click", closeUpgradeable);
+    document.getElementById("showUpgraded").addEventListener("click", showUpgradedScreen);
+    document.getElementById("closeUpgraded").addEventListener("click", closeUpgraded);
 }
 
 function getCurrentState() {
@@ -14,6 +18,7 @@ function getCurrentState() {
         showProperties(game.players);
         showUpgradeable(game.players);
         showMortgaged(game.players);
+        showUpgraded(game.players);
     });
 }
 
@@ -40,7 +45,6 @@ function showProperty(container, property) {
             </div>
             <div class="backside">
                 <a class="mortgage" id="${property.position}" href="#">Take mortgage</a>
-                <a class="sell" href="#">Sell</a>
             </div>
         </div>
     </div>`);
@@ -85,6 +89,44 @@ function upgradeProperty(e) {
     });
 }
 
+function showUpgraded(players) {
+    const container = document.getElementById("upgradedProperties");
+    container.innerHTML = "";
+    const upgraded = players.filter(player => player.name === _username)[0]
+        .properties.filter(property => property.houseCount > 0 || property.hotel);
+    for (let property of upgraded) {
+        container.insertAdjacentHTML("beforeend", `
+            <div class="flipCard">
+                <div class="innerCard">
+                    <div class="frontSide">
+                        <img src="assets/PropertyCards/${property.position}.png" alt="Upgraded property">
+                    </div>
+                    <div class="backside">
+                        <a class="sell" id="${property.name}" href="#">Sell an upgrade</a>
+                    </div>
+                </div>
+            </div>`);
+    }
+    document.querySelectorAll(".sell").forEach(button => {
+        button.addEventListener("click", sellHouse);
+    });
+}
+
+function sellHouse(e) {
+    const propertyName = e.target.id;
+    fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/houses`, "DELETE").then(() => {
+        getCurrentState();
+    });
+}
+
+function showUpgradedScreen() {
+    document.getElementById("upgraded").style.display = "block";
+}
+
+function closeUpgraded() {
+    document.getElementById("upgraded").style.display = "none";
+}
+
 function showMortgaged(players) {
     const container = document.getElementById("mortgagedProperties");
     container.innerHTML = "";
@@ -127,4 +169,12 @@ function settleMortgage(e) {
     fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/mortgage`, "DELETE").then(() => {
         getCurrentState();
     });
+}
+
+function showUpgradeableScreen() {
+    document.getElementById("upgradeable").style.display = "block";
+}
+
+function closeUpgradeable() {
+    document.getElementById("upgradeable").style.display = "none";
 }
