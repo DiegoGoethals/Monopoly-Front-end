@@ -93,7 +93,7 @@ function showUpgraded(players) {
     const container = document.getElementById("upgradedProperties");
     container.innerHTML = "";
     const upgraded = players.filter(player => player.name === _username)[0]
-        .properties.filter(property => property.houseCount > 0 || property.hotel);
+        .properties.filter(property => property.houseCount > 0 || property.hotelCount === 0);
     for (let property of upgraded) {
         container.insertAdjacentHTML("beforeend", `
             <div class="flipCard">
@@ -102,21 +102,27 @@ function showUpgraded(players) {
                         <img src="assets/PropertyCards/${property.position}.png" alt="Upgraded property">
                     </div>
                     <div class="backside">
-                        <a class="sell" id="${property.name}" href="#">Sell an upgrade</a>
+                        <a class="sell" id="${property.name}" data-hotelCount="${property.hotelCount}" href="#">Sell an upgrade</a>
                     </div>
                 </div>
             </div>`);
     }
     document.querySelectorAll(".sell").forEach(button => {
-        button.addEventListener("click", sellHouse);
+        button.addEventListener("click", sellHouseOrHotel);
     });
 }
 
-function sellHouse(e) {
+function sellHouseOrHotel(e) {
     const propertyName = e.target.id;
-    fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/houses`, "DELETE").then(() => {
-        getCurrentState();
-    });
+    if (parseInt(e.target.dataset.hotelcount) === 0) {
+        fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/houses`, "DELETE").then(() => {
+            getCurrentState();
+        });
+    } else {
+        fetchFromServer(`/games/${_gameID}/players/${_username}/properties/${propertyName}/hotel`, "DELETE").then(() => {
+            getCurrentState();
+        });
+    }
 }
 
 function showUpgradedScreen() {
