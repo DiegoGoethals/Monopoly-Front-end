@@ -4,6 +4,7 @@
 
 function initIndex() {
     document.getElementById("username").addEventListener("input", enable);
+    document.getElementById("deleteGames").addEventListener("click", deleteGames);
 }
 
 function enable() {
@@ -15,4 +16,10 @@ function enable() {
         const $button = document.getElementById("play");
         $button.disabled = true;
     }
+}
+
+function deleteGames() {
+    fetchFromServer("/games", "DELETE").then(games => {
+        console.log("Games deleted", games);
+    });
 }
